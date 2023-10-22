@@ -7,7 +7,12 @@ import altair as alt
 from bokeh.plotting import figure
 from bokeh.models import ColumnDataSource
 
-data = pd.read_csv('https://www.data.gouv.fr/fr/datasets/r/5f71ba43-afc8-43a0-b306-dafe29940f9c', sep=';')
+@st.cache_data
+def load_data():
+           data = pd.read_csv('https://www.data.gouv.fr/fr/datasets/r/5f71ba43-afc8-43a0-b306-dafe29940f9c', sep=';')
+           return data
+data = load_data()
+
 st.header('Visualization Project', divider='rainbow')
 st.subheader('This page contains several visualizations of the distribution of various pathologies. Most of the graphics are based on level 1 pathologies.')
 
